@@ -33,6 +33,17 @@ void dump_to_file(const char* name, void* data, size_t size) {
     fclose(output);
 }
 
+void read_from_file(const char* name, void* data, size_t size) {
+  FILE* input = fopen(name, "rb");
+
+  if (!input) {
+        printf("failed to open input\n");
+        exit(1);
+  }
+  fread(data, size, 1, input);
+  fclose(input);
+}
+
 #ifndef memmem
 // https://stackoverflow.com/questions/52988769/writing-own-memmem-for-windows
 void* memmem(void* haystack, size_t haystack_len, void* needle, size_t needle_len) {

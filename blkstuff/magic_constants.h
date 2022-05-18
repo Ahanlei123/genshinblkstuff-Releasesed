@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 #include <stdint.h>
 
 // giant constants/precalculated stuff go here
@@ -691,6 +692,17 @@ static inline uint8_t gf256_mul(uint8_t a, uint8_t b)
     return 0;
 
   return gf256_exp[(gf256_log[a] + gf256_log[b]) % 255];
+}
+
+static inline uint8_t gf256_div(uint8_t a, uint8_t b)
+{
+  if (a == 0)
+    return 0;
+
+  if (b == 0)
+    assert(b == 0);
+
+  return gf256_exp[(255 + gf256_log[a] - gf256_log[b]) % 255];
 }
 
 #pragma pack(1)
