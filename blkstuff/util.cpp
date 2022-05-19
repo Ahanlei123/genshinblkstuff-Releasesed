@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cstdint>
 
 // https://stackoverflow.com/questions/29242/off-the-shelf-c-hex-dump-code
 void hexdump(const char* caption, void* ptr, int buflen) {
@@ -31,6 +32,24 @@ void dump_to_file(const char* name, void* data, size_t size) {
     }
     fwrite(data, size, 1, output);
     fclose(output);
+}
+
+void read_from_file(const char* name, uint8_t*& data, size_t& size) {
+  FILE* input = fopen(name, "rb");
+
+  if (!input) {
+        printf("failed to open input\n");
+        exit(1);
+  }
+
+  fseek(input, 0, SEEK_END);
+  size = ftell(input);
+  fseek(input, 0, SEEK_SET);
+
+  data = new uint8_t[size];
+
+  fread(data, size, 1, input);
+  fclose(input);
 }
 
 #ifndef memmem
