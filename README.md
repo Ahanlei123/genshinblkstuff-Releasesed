@@ -12,4 +12,4 @@ Thanks to TemaFlex builded this tool.
 Now you can use it without compile.
 
 # How to use
-Download Releases.you need write `blkstuff.exe rebuild 00000000.blk`and edit `Process.bin`.after press enter in console,and you have rebuilded.blk.
+Download Releases.you need write `blkstuff.exe repack 00000000.blk`and edit `Process.bin`.after press enter in console,and you have rebuilded.blk.
